@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            background: linear-gradient(135deg, #000, #001f1f);
+            color: white;
+        }
+
+        .box {
+            max-width: 400px;
+            margin: 100px auto;
+            padding: 30px;
+            background: #111;
+            border-radius: 20px;
+            box-shadow: 0 0 30px #00ffe1;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {opacity:0; transform: translateY(30px);}
+            to {opacity:1;}
+        }
+
+        input {
+            background: #000 !important;
+            color: white !important;
+            border: 1px solid #333 !important;
+        }
+
+        .btn-neon {
+            background: #00ffe1;
+            border: none;
+            color: black;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="box">
+    <h2 class="text-center mb-3">🔐 Login</h2>
+
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+
+        <button class="btn btn-neon w-100">Login</button>
+    </form>
+
+    <a href="/register/" class="btn btn-outline-light w-100 mt-2">Create Account</a>
+</div>
+
+</body>
+</html>

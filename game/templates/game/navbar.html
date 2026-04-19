@@ -1,0 +1,154 @@
+<head>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+        body {
+            background: #0a0a0a;
+            color: white;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        /* Navbar */
+        .navbar {
+            background: rgba(0,0,0,0.8);
+            backdrop-filter: blur(10px);
+        }
+
+        .navbar-brand {
+            font-weight: bold;
+            color: #00ffe1 !important;
+        }
+
+        /* Banner */
+        .banner {
+            height: 350px;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)),
+            url('https://images.unsplash.com/photo-1512436991641-6745cdb1723f');
+            background-size: cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .banner h1 {
+            font-size: 50px;
+            color: #00ffe1;
+            text-shadow: 0 0 20px #00ffe1;
+            animation: fadeIn 2s ease;
+        }
+
+        @keyframes fadeIn {
+            from {opacity:0; transform: translateY(20px);}
+            to {opacity:1;}
+        }
+
+        /* Card */
+        .card {
+            background: #111;
+            border: 1px solid #222;
+            border-radius: 15px;
+            overflow: hidden;
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 0 20px #00ffe1;
+        }
+
+        .card img {
+            height: 250px;
+            object-fit: cover;
+        }
+
+        .price {
+            color: #00ffe1;
+            font-weight: bold;
+        }
+
+        /* Buttons */
+        .btn-neon {
+            background: #00ffe1;
+            color: black;
+            border: none;
+        }
+
+        .btn-neon:hover {
+            background: #00cbb5;
+        }
+
+        .btn-dark {
+            border: 1px solid #00ffe1;
+        }
+
+        /* Search */
+        input, select {
+            background: #111 !important;
+            color: white !important;
+            border: 1px solid #333 !important;
+        }
+    </style>
+
+</head>
+
+
+
+<!-- 🔥 GLOBAL NAVBAR -->
+<nav class="navbar navbar-expand-lg">
+    <div class="container">
+
+        <!-- 🏴‍☠️ LOGO (CLICK = HOME ทุกหน้า) -->
+        <a class="navbar-brand cyber-logo" href="/">
+    🏴‍☠️ DIFFWEAR STORE
+</a>
+
+        <!-- 🔍 SEARCH -->
+        <form method="GET" class="d-flex ms-4" style="gap:10px; flex:1; max-width:500px;">
+            <input name="search" class="form-control" placeholder="Search drip...">
+
+            <select name="category" class="form-control">
+                <option value="">All</option>
+                <option value="shirt">Shirt</option>
+                <option value="pants">Pants</option>
+                <option value="jacket">Jacket</option>
+            </select>
+
+            <button class="btn btn-neon">Search</button>
+        </form>
+
+        <!-- 🔥 RIGHT SIDE -->
+        <div class="d-flex align-items-center gap-2 ms-auto">
+
+            <a href="/cart/" class="btn btn-dark position-relative">
+                🛒 Cart
+                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                    {{ request.session.cart|length }}
+                </span>
+            </a>
+
+            <a href="/seller-inbox/" class="btn btn-neon position-relative">
+                📩 Orders
+                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                    NEW
+                </span>
+            </a>
+
+            {% if user.is_authenticated %}
+                <a href="/add-product/" class="btn btn-neon">➕ Add</a>
+            {% endif %}
+
+            {% if user.is_authenticated %}
+                <span class="text-white ms-2">
+                    Hi, {{ user.username }}
+                </span>
+                <a href="/logout/" class="btn btn-danger">Logout</a>
+            {% else %}
+                <a href="/login/" class="btn btn-outline-light">Login</a>
+                <a href="/register/" class="btn btn-neon">Register</a>
+            {% endif %}
+
+            
+        </div>
+    </div>
+</nav>
